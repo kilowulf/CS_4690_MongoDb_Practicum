@@ -1,0 +1,20 @@
+user email: kilonow1275@gmail.com
+
+pass: NeoAaron7512
+
+
+
+DB login credentials:
+username: kilonow1275
+pass: 3ELQjyHpUHufLRgg
+
+where woul dyou like to connect from?
+my local environemnt?    Cloud Environmnet?
+- i choose cloud environment:  ask professor which one to do
+
+
+IP access list:
+136.36.47.166/32       service provider external ip for my home
+
+
+****NOTE: json data objects must be in an array to import if there are multiple records.

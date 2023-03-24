@@ -1,0 +1,12 @@
+{
+  "name": "node_express_practicum",
+  "version": "1.0.0",
+  "description": "cs 4690 assignment",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aaron Brown",
+  "license": "MIT",
+  "keywords": []
+}

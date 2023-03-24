@@ -1,0 +1,19 @@
+{
+  "name": "12-mongodb-practicum",
+  "version": "1.0.0",
+  "description": "CS 4690-001 Spring",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Aaron Brown",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongodb": "^5.1.0",
+    "mongoose": "^7.0.1"
+  }
+}
