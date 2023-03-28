@@ -72,17 +72,46 @@ app.get("/api/v1/courses", async (req, res) => {
 // get logs array
 app.get("/api/v1/logs", async (req, res) => {
   const logs = await LogModel.find().populate("courseId");
-  res.json(logs);
+
+  const formattedLogs = logs.map(log => {
+    const formattedDate = new Date(log.date).toLocaleString("en-US", {
+      month: "numeric",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric"
+    });
+
+    return { ...log.toObject(), date: formattedDate };
+  });
+
+  res.json(formattedLogs);
 });
 
 // get record that matches courseId and uvuId
 app.get("/api/v1/logs/:courseId/:uvuId", async (req, res) => {
   const { courseId, uvuId } = req.params;
   const logs = await LogModel.find({ courseId, uvuId }).populate("courseId");
+
   if (logs.length === 0) {
     return res.status(404).send("Logs not found");
   }
-  res.send(logs);
+
+  const formattedLogs = logs.map(log => {
+    const formattedDate = new Date(log.date).toLocaleString("en-US", {
+      month: "numeric",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric"
+    });
+
+    return { ...log.toObject(), date: formattedDate };
+  });
+
+  res.send(formattedLogs);
 });
 
 // add new entry to logs array

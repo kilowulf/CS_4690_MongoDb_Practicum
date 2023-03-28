@@ -25,6 +25,23 @@ $(document).ready(function() {
       location.reload();
     }
   });
+
+  // format date
+  function formatDate(date) {
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+    const amPm = hours < 12 ? "AM" : "PM";
+    const formattedHours = hours % 12 || 12; // Converts 0 to 12 for display purposes
+
+    return `${month}/${day}/${year} ${formattedHours}:${minutes
+      .toString()
+      .padStart(2, "0")}:${seconds.toString().padStart(2, "0")} ${amPm}`;
+  }
+
   // variable to prevent slidetoggle of entry during update
   let updateClicked = false;
   let currentDate = new Date();
@@ -32,7 +49,6 @@ $(document).ready(function() {
   // update log entry function
   function addUpdateButton(log, logItem) {
     currentDate = new Date();
-    const currentTime = new Date().getTime();
     const logDateObj = new Date(log.date);
     const timeDiff = currentDate.getTime() - logDateObj.getTime();
     const dayDiff = timeDiff / (1000 * 3600 * 24);
@@ -94,7 +110,7 @@ $(document).ready(function() {
               .put(`http://localhost:3000/api/v1/logs/${log.id}`, {
                 courseId: log.courseId,
                 uvuId: log.uvuId,
-                date: formattedDate,
+                date: formatDate(new Date()),
                 text: newText,
                 id: log.id
               })
@@ -199,9 +215,8 @@ $(document).ready(function() {
               const logItem = $(`<li>`);
 
               // Create the log date element
-              const logDate = $(`<div><small>${log.date}</small></div>`);
-              $("small").addClass(
-                "text-lg font-semibold font-sans border-x-gray-300"
+              const logDate = $(
+                `<div><small class="text-lg font-semibold font-sans border-x-gray-300">${log.date}</small></div>`
               );
 
               // Create the log text element
@@ -315,9 +330,8 @@ $(document).ready(function() {
                 const logItem = $(`<li>`);
 
                 // Create the log date element
-                const logDate = $(`<div><small>${log.date}</small></div>`);
-                $("small").addClass(
-                  "text-lg font-semibold font-sans border-x-gray-300"
+                const logDate = $(
+                  `<div><small class="text-lg font-semibold font-sans border-x-gray-300">${log.date}</small></div>`
                 );
 
                 // Create the log text element
